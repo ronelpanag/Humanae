@@ -15,9 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Humanae.Repositories", "Hua
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Humanae.Services", "Huamanae.Services\Humanae.Services.csproj", "{ED30E67F-3EA5-4BB5-863A-D11FA43BC732}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Humanae.Dto", "Humanae.Dto\Humanae.Dto.csproj", "{5F6AE880-4584-446A-92F6-091BA582EC79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Humanae.Dto", "Humanae.Dto\Humanae.Dto.csproj", "{5F6AE880-4584-446A-92F6-091BA582EC79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Humanae.Contracts", "Humanae.Contracts\Humanae.Contracts.csproj", "{23BDAB43-E5FF-4B77-B0F2-CFAB688A23DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Humanae.Contracts", "Humanae.Contracts\Humanae.Contracts.csproj", "{23BDAB43-E5FF-4B77-B0F2-CFAB688A23DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
