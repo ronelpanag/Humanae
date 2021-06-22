@@ -3,6 +3,7 @@ using Humanae.Contracts.Services;
 using Humanae.Domain.Entities;
 using Humanae.DomainGlobal;
 using Humanae.Dto.Parameters;
+using System;
 using System.Threading.Tasks;
 
 namespace Humanae.Services
@@ -20,15 +21,25 @@ namespace Humanae.Services
         {
             var result = new ServiceResult();
 
-            var userExists = await _repository.Exists(x => x.Username == parameter.Username && x.Password == parameter.Password);
-
-            if (!userExists)
+            try
             {
-                result.AddErrorMessage("Usuario y/o contraseña incorrectos.");
-                return result;
+                var userExists = await _repository
+                .Exists(x => x.Username == parameter.Username &&
+                             x.Password == parameter.Password);
+
+                if (!userExists)
+                {
+                    result.AddErrorMessage("Usuario y/o contraseña incorrectos.");
+                    return result;
+                }
+
+                result.AddMessage("Inicio de sesión exitoso.");
+            }
+            catch (Exception ex)
+            {
+                result.AddErrorMessage(ex);
             }
 
-            result.AddMessage("Inicio de sesión exitoso.");
             return result;
         }
     }

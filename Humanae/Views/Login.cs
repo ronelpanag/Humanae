@@ -1,18 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+﻿using Humanae.Contracts.Services;
+using Humanae.Dto.Parameters;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Humanae.Views
 {
     public partial class Login : Form
     {
-        public Login()
+        private IUserService _service { get; set; }
+
+        public Login(IUserService service)
         {
+            _service = service;
             InitializeComponent();
+        }
+
+        private async void button1_Click(object sender, System.EventArgs e)
+        {
+            var parameter = new AuthenticateParameter
+            {
+                Username = txtUsername.Text,
+                Password = txtPassword.Text
+            };
+
+            var result = await _service.Login(parameter);
+
+            if (result.ExcecutedSuccessfully)
+            {
+                Main frm = new Main();
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show(result.Message,
+                                "Error de Autenticacion",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -11,8 +11,7 @@ namespace Humanae.Domain.Entities
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
-        [Required]
-        public int EmployeeId { get; set; }
+        public int? EmployeeId { get; set; }
         public Employee Employee { get; set; }
         public bool IsActive { get; set; } = true;
     }

@@ -3,11 +3,9 @@ using Humanae.Contracts.Services;
 using Humanae.Domain.Entities;
 using Humanae.Repositories;
 using Humanae.Services;
+using Humanae.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Humanae
@@ -28,7 +26,13 @@ namespace Humanae
 
             ConfigureServices(services);
 
-            Application.Run(new Login());
+            using (ServiceProvider provider = services.BuildServiceProvider())
+            {
+                var login = provider.GetRequiredService<Login>();
+
+                Application.Run(login);
+
+            }
         }
 
         private static void ConfigureServices(ServiceCollection services)
@@ -51,7 +55,8 @@ namespace Humanae
                 .AddScoped<IUserService, UserService>()
                 .AddScoped<IExperienceService, ExperienceService>()
                 .AddScoped<ITrainingService, TrainingService>()
-                .AddScoped<IEmployeeService, EmployeeService>();
+                .AddScoped<IEmployeeService, EmployeeService>()
+                .AddScoped<Login>();
         }
     }
 }
