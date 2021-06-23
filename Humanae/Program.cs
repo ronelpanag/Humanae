@@ -12,6 +12,8 @@ namespace Humanae
 {
     static class Program
     {
+        public static IServiceProvider serviceProvider { get; set; }
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -26,13 +28,9 @@ namespace Humanae
 
             ConfigureServices(services);
 
-            using (ServiceProvider provider = services.BuildServiceProvider())
-            {
-                var login = provider.GetRequiredService<Login>();
+            serviceProvider = services.BuildServiceProvider();
 
-                Application.Run(login);
-
-            }
+            Application.Run(serviceProvider.GetRequiredService<Login>());
         }
 
         private static void ConfigureServices(ServiceCollection services)
@@ -46,8 +44,9 @@ namespace Humanae
                 .AddScoped<IRepository<User>, Repository<User>>()
                 .AddScoped<IRepository<Position>, Repository<Position>>()
                 .AddScoped<IRepository<Department>, Repository<Department>>()
-                .AddScoped<IRepository<Employee>, Repository<Employee>>()
-                .AddScoped<IDepartmentService, DepartmentService>()
+                .AddScoped<IRepository<Employee>, Repository<Employee>>();
+
+            services.AddScoped<IDepartmentService, DepartmentService>()
                 .AddScoped<ISkillService, SkillService>()
                 .AddScoped<ILanguageService, LanguageService>()
                 .AddScoped<IPositionService, PositionService>()
@@ -55,8 +54,11 @@ namespace Humanae
                 .AddScoped<IUserService, UserService>()
                 .AddScoped<IExperienceService, ExperienceService>()
                 .AddScoped<ITrainingService, TrainingService>()
-                .AddScoped<IEmployeeService, EmployeeService>()
-                .AddScoped<Login>();
+                .AddScoped<IEmployeeService, EmployeeService>();
+                
+            services
+                .AddScoped<Login>()
+                .AddSingleton<Main>();
         }
     }
 }

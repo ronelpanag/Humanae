@@ -8,12 +8,11 @@ using System.Windows.Forms;
 
 namespace Humanae.Views
 {
-    public partial class Main : Form
+    public partial class Applicants : Form
     {
-        public Main()
+        public Applicants()
         {
             InitializeComponent();
         }
-
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Humanae.Contracts.Services;
 using Humanae.Dto.Parameters;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Humanae.Views
@@ -27,8 +26,10 @@ namespace Humanae.Views
 
             if (result.ExcecutedSuccessfully)
             {
-                Main frm = new Main();
-                frm.Show();
+                Main mainForm = new Main();
+                mainForm.Show();
+
+                Hide();
             }
             else
             {
