@@ -20,11 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Huamanae.Data\Humanae.Data.csproj" />
-    <ProjectReference Include="..\Huamanae.Repository\Humanae.Repositories.csproj" />
-    <ProjectReference Include="..\Huamanae.Services\Humanae.Services.csproj" />
     <ProjectReference Include="..\Humanae.Contracts\Humanae.Contracts.csproj" />
+    <ProjectReference Include="..\Humanae.Data\Humanae.Data.csproj" />
+    <ProjectReference Include="..\Humanae.DomainGlobal\Humanae.DomainGlobal.csproj" />
     <ProjectReference Include="..\Humanae.Dto\Humanae.Dto.csproj" />
+    <ProjectReference Include="..\Humanae.Repository\Humanae.Repositories.csproj" />
+    <ProjectReference Include="..\Humanae.Services\Humanae.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

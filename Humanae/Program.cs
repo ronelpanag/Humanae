@@ -58,7 +58,9 @@ namespace Humanae
                 
             services
                 .AddScoped<Login>()
-                .AddSingleton<Main>();
+                .AddSingleton<Main>()
+                .AddTransient<EmployeeListView>()
+                .AddTransient<ApplicantListView>();
         }
     }
 }

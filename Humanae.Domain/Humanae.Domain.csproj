@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Huamanae.DomainGlobal\Humanae.DomainGlobal.csproj" />
     <ProjectReference Include="..\Humanae.Contracts\Humanae.Contracts.csproj" />
   </ItemGroup>
 

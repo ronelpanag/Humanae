@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Huamanae.Data\Humanae.Data.csproj" />
     <ProjectReference Include="..\Humanae.Contracts\Humanae.Contracts.csproj" />
+    <ProjectReference Include="..\Humanae.Data\Humanae.Data.csproj" />
     <ProjectReference Include="..\Humanae.Domain\Humanae.Domain.csproj" />
   </ItemGroup>
 

@@ -1,7 +1,7 @@
 ﻿
 namespace Humanae.Views
 {
-    partial class Applicants
+    partial class UserListView
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace Humanae.Views
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Applicants";
+            this.Text = "UserListView";
         }
 
         #endregion

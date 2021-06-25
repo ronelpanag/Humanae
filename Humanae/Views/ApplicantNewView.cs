@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Humanae.Views
 {
-    public partial class Applicants : Form
+    public partial class ApplicantNewView : Form
     {
-        public Applicants()
+        public ApplicantNewView()
         {
             InitializeComponent();
         }

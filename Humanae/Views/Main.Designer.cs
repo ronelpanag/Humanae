@@ -31,6 +31,7 @@ namespace Humanae.Views
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@ namespace Humanae.Views
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.labelWelcome = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,15 +59,25 @@ namespace Humanae.Views
             this.panel1.Size = new System.Drawing.Size(1029, 617);
             this.panel1.TabIndex = 0;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(616, 576);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(399, 30);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Ronel Pantaleón Agramonte A00105073";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(768, 367);
+            this.label3.Location = new System.Drawing.Point(708, 367);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 45);
+            this.label3.Size = new System.Drawing.Size(250, 45);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Reportes";
+            this.label3.Text = "Configuraciones";
             // 
             // label2
             // 
@@ -94,7 +104,7 @@ namespace Humanae.Views
             this.button3.BackColor = System.Drawing.Color.AliceBlue;
             this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button3.Image = global::Humanae.Properties.Resources.growth;
+            this.button3.Image = global::Humanae.Properties.Resources.repair;
             this.button3.Location = new System.Drawing.Point(717, 178);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(230, 177);
@@ -112,6 +122,7 @@ namespace Humanae.Views
             this.button2.Size = new System.Drawing.Size(216, 177);
             this.button2.TabIndex = 0;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -121,9 +132,10 @@ namespace Humanae.Views
             this.button1.Image = global::Humanae.Properties.Resources.social_network;
             this.button1.Location = new System.Drawing.Point(48, 178);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(216, 177);
+            this.button1.Size = new System.Drawing.Size(230, 177);
             this.button1.TabIndex = 0;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // labelWelcome
             // 
@@ -134,16 +146,6 @@ namespace Humanae.Views
             this.labelWelcome.Size = new System.Drawing.Size(393, 54);
             this.labelWelcome.TabIndex = 1;
             this.labelWelcome.Text = "Bienvenido, Usuario.";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(616, 576);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(399, 30);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Ronel Pantaleón Agramonte A00105073";
             // 
             // Main
             // 

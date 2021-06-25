@@ -15,5 +15,20 @@ namespace Humanae.Views
             InitializeComponent();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var child = (Form)Program.serviceProvider
+                .GetService(typeof(EmployeeListView));
+
+            child.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var child = (Form)Program.serviceProvider
+                .GetService(typeof(ApplicantListView));
+
+            child.Show();
+        }
     }
 }

@@ -5,21 +5,22 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Humanae.Views
 {
-    public partial class Employees : Form
+    public partial class EmployeeListView : Form
     {
         private IEmployeeService _employeeService;
 
-        public Employees(IEmployeeService employeeService)
+        public EmployeeListView(IEmployeeService employeeService)
         {
             _employeeService = employeeService;
             InitializeComponent();
         }
 
-        private async void GetData()
+        private async Task GetData()
         {
             var employeeResult = await _employeeService.GetAll();
 
@@ -35,15 +36,15 @@ namespace Humanae.Views
             else
             {
                 MessageBox.Show(employeeResult.Message,
-                                "Error de Autenticacion",
+                                "Error",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
             }
         }
 
-        private void Employees_Load(object sender, EventArgs e)
+        private async void Employees_Load(object sender, EventArgs e)
         {
-            GetData();
+            await GetData();
         }
     }
 }
