@@ -110,6 +110,7 @@ namespace Humanae.Views
             this.button3.Size = new System.Drawing.Size(230, 177);
             this.button3.TabIndex = 0;
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -155,6 +156,7 @@ namespace Humanae.Views
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Humanae - Inicio";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -37,14 +37,14 @@ namespace Humanae.Views
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.txtIdentification = new System.Windows.Forms.MaskedTextBox();
+            this.txtRecommendedBy = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbAppliedPosition = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -111,34 +111,34 @@ namespace Humanae.Views
             this.label7.TabIndex = 6;
             this.label7.Text = "Recomendado por";
             // 
-            // textBox1
+            // txtFirstName
             // 
-            this.textBox1.Location = new System.Drawing.Point(186, 123);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(453, 31);
-            this.textBox1.TabIndex = 7;
+            this.txtFirstName.Location = new System.Drawing.Point(186, 123);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(453, 31);
+            this.txtFirstName.TabIndex = 7;
             // 
-            // textBox2
+            // txtLastName
             // 
-            this.textBox2.Location = new System.Drawing.Point(186, 197);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(453, 31);
-            this.textBox2.TabIndex = 8;
+            this.txtLastName.Location = new System.Drawing.Point(186, 197);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(453, 31);
+            this.txtLastName.TabIndex = 8;
             // 
-            // maskedTextBox1
+            // txtIdentification
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(186, 275);
-            this.maskedTextBox1.Mask = "000-0000000-0";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(453, 31);
-            this.maskedTextBox1.TabIndex = 9;
+            this.txtIdentification.Location = new System.Drawing.Point(186, 275);
+            this.txtIdentification.Mask = "000-0000000-0";
+            this.txtIdentification.Name = "txtIdentification";
+            this.txtIdentification.Size = new System.Drawing.Size(453, 31);
+            this.txtIdentification.TabIndex = 9;
             // 
-            // textBox3
+            // txtRecommendedBy
             // 
-            this.textBox3.Location = new System.Drawing.Point(186, 509);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(453, 31);
-            this.textBox3.TabIndex = 10;
+            this.txtRecommendedBy.Location = new System.Drawing.Point(186, 509);
+            this.txtRecommendedBy.Name = "txtRecommendedBy";
+            this.txtRecommendedBy.Size = new System.Drawing.Size(453, 31);
+            this.txtRecommendedBy.TabIndex = 10;
             // 
             // button1
             // 
@@ -160,6 +160,7 @@ namespace Humanae.Views
             this.button2.TabIndex = 12;
             this.button2.Text = "Aceptar";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox4
             // 
@@ -169,27 +170,29 @@ namespace Humanae.Views
             this.textBox4.Size = new System.Drawing.Size(453, 31);
             this.textBox4.TabIndex = 13;
             // 
-            // comboBox1
+            // cmbAppliedPosition
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(186, 352);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(453, 33);
-            this.comboBox1.TabIndex = 14;
+            this.cmbAppliedPosition.FormattingEnabled = true;
+            this.cmbAppliedPosition.Location = new System.Drawing.Point(186, 352);
+            this.cmbAppliedPosition.Name = "cmbAppliedPosition";
+            this.cmbAppliedPosition.Size = new System.Drawing.Size(453, 33);
+            this.cmbAppliedPosition.TabIndex = 14;
             // 
             // ApplicantNewView
             // 
+            this.AcceptButton = this.button2;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(832, 653);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbAppliedPosition);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.maskedTextBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtRecommendedBy);
+            this.Controls.Add(this.txtIdentification);
+            this.Controls.Add(this.txtLastName);
+            this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -200,6 +203,7 @@ namespace Humanae.Views
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ApplicantNewView";
             this.Text = "Humanae - Nuevo Candidato";
+            this.Load += new System.EventHandler(this.ApplicantNewView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,13 +218,13 @@ namespace Humanae.Views
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.MaskedTextBox txtIdentification;
+        private System.Windows.Forms.TextBox txtRecommendedBy;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbAppliedPosition;
     }
 }

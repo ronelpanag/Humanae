@@ -14,5 +14,35 @@ namespace Humanae.Views
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var child = (Form)Program.serviceProvider
+                .GetService(typeof(DepartmentListView));
+
+            child.Show();
+
+            Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var child = (Form)Program.serviceProvider
+                .GetService(typeof(PositionListView));
+
+            child.Show();
+
+            Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var child = (Form)Program.serviceProvider
+                .GetService(typeof(UserListView));
+
+            child.Show();
+
+            Hide();
+        }
     }
 }

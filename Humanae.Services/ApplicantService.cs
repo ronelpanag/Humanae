@@ -71,9 +71,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<ApplicantDto>> Create(ApplicantParameter parameter)
+        public async Task<ServiceResult> Create(ApplicantParameter parameter)
         {
-            var result = new ServiceResult<ApplicantDto>();
+            var result = new ServiceResult();
 
                 var data = new Applicant
                 {
@@ -87,10 +87,6 @@ namespace Humanae.Services
             try
             {
                 await _repository.AddAsync(data);
-
-                var model = await GetById(data.Id);
-
-                result.Data = model.Data;
             }
             catch (Exception e)
             {
@@ -100,9 +96,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<ApplicantDto>> Edit(ApplicantParameter parameter)
+        public async Task<ServiceResult> Edit(ApplicantParameter parameter)
         {
-            var result = new ServiceResult<ApplicantDto>();
+            var result = new ServiceResult();
 
             try
             {
@@ -115,10 +111,6 @@ namespace Humanae.Services
                 modelToUpdate.RecommendedBy = parameter.RecommendedBy;
 
                 await _repository.UpdateAsync(modelToUpdate);
-
-                var model = await GetById(modelToUpdate.Id);
-
-                result.Data = model.Data;
             }
             catch (Exception e)
             {
