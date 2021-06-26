@@ -117,6 +117,7 @@ namespace Humanae.Views
             this.button1.TabIndex = 2;
             this.button1.Text = "Nuevo";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // PositionListView
             // 
@@ -129,6 +130,7 @@ namespace Humanae.Views
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PositionListView";
             this.Text = "Humanae - Listado de Posiciones";
+            this.Load += new System.EventHandler(this.PositionListView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

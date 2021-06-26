@@ -47,5 +47,13 @@ namespace Humanae.Views
         {
             await GetData();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var child = (Form)Program.serviceProvider
+                .GetService(typeof(ApplicantNewView));
+
+            child.Show();
+        }
     }
 }
