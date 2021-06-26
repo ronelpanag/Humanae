@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -31,9 +32,11 @@ namespace Humanae.Contracts.Repositories
         /// </summary>
         /// <param name="entity">Entidad actualizada</param>
         Task UpdateAsync(TEntity entity);
+        Task DeleteAsync(TEntity entity);
 
-        Task AddRange(IEnumerable<TEntity> entities);
-        Task UpdateRange(IEnumerable<TEntity> entities);
-        Task<bool> Exists(Expression<Func<TEntity, bool>> predicate);
+        Task AddRangeAsync(IEnumerable<TEntity> entities);
+        Task UpdateRangeAsync(IEnumerable<TEntity> entities);
+        Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate);
+        DbSet<TEntity> Entity();
     }
 }

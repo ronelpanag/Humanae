@@ -4,6 +4,7 @@ using Humanae.Domain.Entities;
 using Humanae.DomainGlobal;
 using Humanae.Dto;
 using Humanae.Dto.Parameters;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,25 +15,17 @@ namespace Humanae.Services
     public class ApplicantService : IApplicantService
     {
         private readonly IRepository<Applicant> _repository;
-        private readonly IPositionService _positionService;
-        private readonly IDepartmentService _departmentService;
 
-        public ApplicantService(IRepository<Applicant> repository,
-            IPositionService positionService,
-            IDepartmentService departmentService)
+        public ApplicantService(IRepository<Applicant> repository)
         {
             _repository = repository;
-            _positionService = positionService;
-            _departmentService = departmentService;
         }
 
         public async Task<ServiceResult<IEnumerable<ApplicantDto>>> GetAll()
         {
             var result = new ServiceResult<IEnumerable<ApplicantDto>>();
 
-            var data = await _repository.GetAllAsync();
-
-            result.Data = data
+            var data = await _repository.Entity()
                 .Select(x => new ApplicantDto
                 {
                     Id = x.Id,
@@ -40,20 +33,15 @@ namespace Humanae.Services
                     LastName = x.LastName,
                     Identification = x.Identification,
                     RecommendedBy = x.RecommendedBy,
-                    DepartmentId = x.DepartmentId,
                     AppliedPositionId = x.AppliedPositionId,
+                    AppliedPosition = x.AppliedPosition.Name,
+                    DepartmentId = x.AppliedPosition.DepartmentId,
+                    Department = x.AppliedPosition.Department.Name,
                     IsActive = x.IsActive
                 })
-                .ToList();
+                .ToListAsync();
 
-            foreach (var item in result.Data)
-            {
-                var department = await _departmentService.GetById(item.DepartmentId);
-                var position = await _positionService.GetById(item.AppliedPositionId);
-
-                item.Department = department.Data.Name;
-                item.AppliedPosition = position.Data.Name;
-            }
+            result.Data = data;
 
             return result;
         }
@@ -62,25 +50,23 @@ namespace Humanae.Services
         {
             var result = new ServiceResult<ApplicantDto>();
 
-            var data = await _repository.FirstOrDefaultAsync(x => x.Id == id);
+            var data = await _repository.Entity()
+                .Select(x => new ApplicantDto
+                {
+                    Id = x.Id,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    Identification = x.Identification,
+                    RecommendedBy = x.RecommendedBy,
+                    AppliedPositionId = x.AppliedPositionId,
+                    AppliedPosition = x.AppliedPosition.Name,
+                    DepartmentId = x.AppliedPosition.DepartmentId,
+                    Department = x.AppliedPosition.Department.Name,
+                    IsActive = x.IsActive
+                })
+                .FirstOrDefaultAsync(x => x.Id == id);
 
-            result.Data = new ApplicantDto
-            {
-                Id = data.Id,
-                FirstName = data.FirstName,
-                LastName = data.LastName,
-                Identification = data.Identification,
-                RecommendedBy = data.RecommendedBy,
-                DepartmentId = data.DepartmentId,
-                AppliedPositionId = data.AppliedPositionId,
-                IsActive = data.IsActive
-            };
-
-            var department = await _departmentService.GetById(result.Data.DepartmentId);
-            var position = await _positionService.GetById(result.Data.AppliedPositionId);
-
-            result.Data.Department = department.Data.Name;
-            result.Data.AppliedPosition = position.Data.Name;
+            result.Data = data;
 
             return result;
         }
@@ -95,7 +81,6 @@ namespace Humanae.Services
                     LastName = parameter.LastName,
                     Identification = parameter.Identification,
                     AppliedPositionId = parameter.AppliedPositionId,
-                    DepartmentId = parameter.DepartmentId,
                     RecommendedBy = parameter.RecommendedBy
                 };
 
@@ -127,7 +112,6 @@ namespace Humanae.Services
                 modelToUpdate.LastName = parameter.LastName;
                 modelToUpdate.Identification = parameter.Identification;
                 modelToUpdate.AppliedPositionId = parameter.AppliedPositionId;
-                modelToUpdate.DepartmentId = parameter.DepartmentId;
                 modelToUpdate.RecommendedBy = parameter.RecommendedBy;
 
                 await _repository.UpdateAsync(modelToUpdate);

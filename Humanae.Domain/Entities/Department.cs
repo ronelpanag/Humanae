@@ -11,10 +11,5 @@ namespace Humanae.Domain.Entities
         [Required]
         public string Name { get; set; }
         public bool IsActive { get; set; } = true;
-
-        public object Select(Func<object, DepartmentDto> p)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

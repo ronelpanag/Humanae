@@ -9,5 +9,6 @@ namespace Humanae.Dto.Parameters
         public RiskLevel RiskLevel { get; set; }
         public decimal MinSalary { get; set; }
         public decimal MaxSalary { get; set; }
+        public int DepartmentId { get; set; }
     }
 }

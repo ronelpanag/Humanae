@@ -27,7 +27,7 @@ namespace Humanae.Repositories
         /// Método para agregar una lista de entidades
         /// </summary>
         /// <param name="entities">lista de entidades agreagdas</param>
-        public async Task AddRange(IEnumerable<TEntity> entities)
+        public async Task AddRangeAsync(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().AddRange(entities);
             await Context.SaveChangesAsync();
@@ -58,7 +58,7 @@ namespace Humanae.Repositories
             await Context.SaveChangesAsync();
         }
 
-        public async Task UpdateRange(IEnumerable<TEntity> entities)
+        public async Task UpdateRangeAsync(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().UpdateRange(entities);
             await Context.SaveChangesAsync();
@@ -69,9 +69,20 @@ namespace Humanae.Repositories
             return await Context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<bool> Exists(Expression<Func<TEntity, bool>> predicate)
+        public async Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await Context.Set<TEntity>().AnyAsync(predicate);
+        }
+
+        public DbSet<TEntity> Entity()
+        {
+            return Context.Set<TEntity>();
+        }
+
+        public async Task DeleteAsync(TEntity entity)
+        {
+            Context.Set<TEntity>().Remove(entity);
+            await Context.SaveChangesAsync();
         }
     }
 }

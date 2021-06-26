@@ -8,6 +8,7 @@ namespace Humanae.Domain.Entities
         public int Id { get; set; }
         [Required]
         public string CompanyName { get; set; }
+        public string JobTitle { get; set; }
         [Required]
         public DateTime FromDate { get; set; }
         public DateTime? ToDate { get; set; }

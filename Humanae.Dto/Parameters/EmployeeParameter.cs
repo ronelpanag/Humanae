@@ -12,5 +12,6 @@ namespace Humanae.Dto.Parameters
         public int DepartmentId { get; set; }
         public int PositionId { get; set; }
         public decimal MonthlySalary { get; set; }
+        public int ApplicantId { get; set; }
     }
 }

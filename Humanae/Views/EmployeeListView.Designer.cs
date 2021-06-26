@@ -63,16 +63,16 @@ namespace Humanae.Views
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(12, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(433, 54);
+            this.label1.Size = new System.Drawing.Size(414, 54);
             this.label1.TabIndex = 3;
             this.label1.Text = "Listado de Empleados";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(758, 55);
+            this.button1.Location = new System.Drawing.Point(871, 55);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 34);
             this.button1.TabIndex = 4;
@@ -81,6 +81,9 @@ namespace Humanae.Views
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -109,7 +112,6 @@ namespace Humanae.Views
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Visible = false;
-            this.Column1.Width = 150;
             // 
             // Column9
             // 
@@ -117,7 +119,6 @@ namespace Humanae.Views
             this.Column9.MinimumWidth = 8;
             this.Column9.Name = "Column9";
             this.Column9.Visible = false;
-            this.Column9.Width = 150;
             // 
             // Column10
             // 
@@ -125,7 +126,6 @@ namespace Humanae.Views
             this.Column10.MinimumWidth = 8;
             this.Column10.Name = "Column10";
             this.Column10.Visible = false;
-            this.Column10.Width = 150;
             // 
             // Column7
             // 
@@ -133,7 +133,6 @@ namespace Humanae.Views
             this.Column7.MinimumWidth = 8;
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
-            this.Column7.Width = 150;
             // 
             // Column2
             // 
@@ -141,7 +140,6 @@ namespace Humanae.Views
             this.Column2.MinimumWidth = 8;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
             // 
             // Column3
             // 
@@ -149,7 +147,6 @@ namespace Humanae.Views
             this.Column3.MinimumWidth = 8;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 150;
             // 
             // Column4
             // 
@@ -157,7 +154,6 @@ namespace Humanae.Views
             this.Column4.MinimumWidth = 8;
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Width = 150;
             // 
             // Column5
             // 
@@ -165,7 +161,6 @@ namespace Humanae.Views
             this.Column5.MinimumWidth = 8;
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
-            this.Column5.Width = 150;
             // 
             // Column8
             // 
@@ -174,7 +169,6 @@ namespace Humanae.Views
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             this.Column8.Visible = false;
-            this.Column8.Width = 150;
             // 
             // Column11
             // 
@@ -182,7 +176,6 @@ namespace Humanae.Views
             this.Column11.MinimumWidth = 8;
             this.Column11.Name = "Column11";
             this.Column11.ReadOnly = true;
-            this.Column11.Width = 150;
             // 
             // Column6
             // 
@@ -192,7 +185,6 @@ namespace Humanae.Views
             this.Column6.ReadOnly = true;
             this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column6.Width = 150;
             // 
             // EmployeeListView
             // 

@@ -4,6 +4,7 @@ using Humanae.Domain.Entities;
 using Humanae.DomainGlobal;
 using Humanae.Dto;
 using Humanae.Dto.Parameters;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,7 @@ namespace Humanae.Services
         {
             var result = new ServiceResult<IEnumerable<PositionDto>>();
 
-            var data = await _repository.GetAllAsync();
-
-            result.Data = data
+            var data = await _repository.Entity()
                 .Select(x => new PositionDto
                 {
                     Id = x.Id,
@@ -34,9 +33,13 @@ namespace Humanae.Services
                     MaxSalary = x.MaxSalary,
                     MinSalary = x.MinSalary,
                     RiskLevel = x.RiskLevel,
+                    DepartmentId = x.DepartmentId,
+                    Department = x.Department.Name,
                     IsActive = x.IsActive
                 })
-                .ToList();
+                .ToListAsync();
+
+            result.Data = data;
 
             return result;
         }
@@ -45,17 +48,21 @@ namespace Humanae.Services
         {
             var result = new ServiceResult<PositionDto>();
 
-            var data = await _repository.FirstOrDefaultAsync(x => x.Id == id);
+            var data = await _repository.Entity()
+                .Select(x => new PositionDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    MaxSalary = x.MaxSalary,
+                    MinSalary = x.MinSalary,
+                    RiskLevel = x.RiskLevel,
+                    DepartmentId = x.DepartmentId,
+                    Department = x.Department.Name,
+                    IsActive = x.IsActive
+                })
+                .FirstOrDefaultAsync(x => x.Id == id);
 
-            result.Data = new PositionDto
-            {
-                Id = data.Id,
-                Name = data.Name,
-                MaxSalary = data.MaxSalary,
-                MinSalary = data.MinSalary,
-                RiskLevel = data.RiskLevel,
-                IsActive = data.IsActive
-            };
+            result.Data = data;
 
             return result;
         }
@@ -68,7 +75,11 @@ namespace Humanae.Services
             {
                 var data = new Position
                 {
-                    Name = parameter.Name
+                    Name = parameter.Name,
+                    MinSalary = parameter.MinSalary,
+                    MaxSalary = parameter.MaxSalary,
+                    RiskLevel = parameter.RiskLevel,
+                    DepartmentId = parameter.DepartmentId
                 };
 
                 await _repository.AddAsync(data);
@@ -94,6 +105,10 @@ namespace Humanae.Services
                 var modelToUpdate = await _repository.FirstOrDefaultAsync(x => x.Id == parameter.Id);
 
                 modelToUpdate.Name = parameter.Name;
+                modelToUpdate.MinSalary = parameter.MinSalary;
+                modelToUpdate.MaxSalary = parameter.MaxSalary;
+                modelToUpdate.RiskLevel = parameter.RiskLevel;
+                modelToUpdate.DepartmentId = parameter.DepartmentId;
 
                 await _repository.UpdateAsync(modelToUpdate);
 

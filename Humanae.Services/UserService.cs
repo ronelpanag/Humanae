@@ -24,7 +24,7 @@ namespace Humanae.Services
             try
             {
                 var userExists = await _repository
-                .Exists(x => x.Username == parameter.Username &&
+                .ExistsAsync(x => x.Username == parameter.Username &&
                              x.Password == parameter.Password);
 
                 if (!userExists)

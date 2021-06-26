@@ -16,9 +16,6 @@ namespace Humanae.Domain.Entities
         public int AppliedPositionId { get; set; }
         public Position AppliedPosition { get; set; }
         [Required]
-        public int DepartmentId { get; set; }
-        public Department Department { get; set; }
-        [Required]
         public string RecommendedBy { get; set; } = "N/A";
         public bool IsChosen { get; set; }
         public bool IsActive { get; set; } = true;

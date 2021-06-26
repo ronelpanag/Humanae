@@ -10,5 +10,7 @@ namespace Humanae.Dto
         public decimal MinSalary { get; set; }
         public decimal MaxSalary { get; set; }
         public bool IsActive { get; set; } = true;
+        public int DepartmentId { get; set; }
+        public string Department { get; set; }
     }
 }
