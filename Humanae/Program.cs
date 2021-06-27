@@ -55,12 +55,18 @@ namespace Humanae
                 .AddScoped<IExperienceService, ExperienceService>()
                 .AddScoped<ITrainingService, TrainingService>()
                 .AddScoped<IEmployeeService, EmployeeService>();
-                
+
             services
                 .AddScoped<Login>()
                 .AddSingleton<Main>()
                 .AddTransient<EmployeeListView>()
-                .AddTransient<ApplicantListView>();
+                .AddTransient<ApplicantListView>()
+                .AddTransient<UserListView>()
+                .AddTransient<DepartmentListView>()
+                .AddTransient<PositionListView>()
+                .AddTransient<ApplicantNewView>()
+                .AddTransient<PositionNewView>()
+                .AddTransient<DepartmentNewView>();
         }
     }
 }

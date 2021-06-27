@@ -29,7 +29,7 @@ namespace Humanae.Views
                 Main mainForm = new Main();
                 mainForm.Show();
 
-                Close();
+                Hide();
             }
             else
             {
