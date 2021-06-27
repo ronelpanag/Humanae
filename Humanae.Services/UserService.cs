@@ -2,8 +2,12 @@
 using Humanae.Contracts.Services;
 using Humanae.Domain.Entities;
 using Humanae.DomainGlobal;
+using Humanae.Dto;
 using Humanae.Dto.Parameters;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Humanae.Services
@@ -39,6 +43,26 @@ namespace Humanae.Services
             {
                 result.AddErrorMessage(ex);
             }
+
+            return result;
+        }
+
+        public async Task<ServiceResult<List<UserDto>>> GetAll()
+        {
+            var result = new ServiceResult<List<UserDto>>();
+
+            var data = await _repository.Entity()
+                .Select(x => new UserDto
+                {
+                    Id = x.Id,
+                    Username = x.Username,
+                    Email = x.Email,
+                    Employee = x.Employee.FirstName + x.Employee.LastName,
+                    IsActive = x.IsActive
+                })
+                .ToListAsync();
+
+            result.Data = data;
 
             return result;
         }
