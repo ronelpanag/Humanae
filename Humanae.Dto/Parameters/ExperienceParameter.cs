@@ -10,5 +10,6 @@ namespace Humanae.Dto.Parameters
         public DateTime? ToDate { get; set; }
         public decimal Salary { get; set; }
         public string JobTitle { get; set; }
+        public int ApplicantId { get; set; }
     }
 }

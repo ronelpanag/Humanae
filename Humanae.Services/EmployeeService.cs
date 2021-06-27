@@ -21,9 +21,9 @@ namespace Humanae.Services
             _repository = repository;
         }
 
-        public async Task<ServiceResult<EmployeeDto>> Create(EmployeeParameter parameter)
+        public async Task<ServiceResult> Create(EmployeeParameter parameter)
         {
-            var result = new ServiceResult<EmployeeDto>();
+            var result = new ServiceResult();
 
             var data = new Employee
             {
@@ -39,10 +39,6 @@ namespace Humanae.Services
             try
             {
                 await _repository.AddAsync(data);
-
-                var model = await GetById(data.Id);
-
-                result.Data = model.Data;
             }
             catch (Exception e)
             {

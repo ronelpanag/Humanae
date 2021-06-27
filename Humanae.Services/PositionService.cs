@@ -67,9 +67,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<PositionDto>> Create(PositionParameter parameter)
+        public async Task<ServiceResult> Create(PositionParameter parameter)
         {
-            var result = new ServiceResult<PositionDto>();
+            var result = new ServiceResult();
 
             try
             {
@@ -83,10 +83,6 @@ namespace Humanae.Services
                 };
 
                 await _repository.AddAsync(data);
-
-                var model = await GetById(data.Id);
-
-                result.Data = model.Data;
             }
             catch (Exception e)
             {
@@ -96,9 +92,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<PositionDto>> Edit(PositionParameter parameter)
+        public async Task<ServiceResult> Edit(PositionParameter parameter)
         {
-            var result = new ServiceResult<PositionDto>();
+            var result = new ServiceResult();
 
             try
             {
@@ -111,10 +107,6 @@ namespace Humanae.Services
                 modelToUpdate.DepartmentId = parameter.DepartmentId;
 
                 await _repository.UpdateAsync(modelToUpdate);
-
-                var model = await GetById(modelToUpdate.Id);
-
-                result.Data = model.Data;
             }
             catch (Exception e)
             {

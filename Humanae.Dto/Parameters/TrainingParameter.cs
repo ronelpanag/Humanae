@@ -10,5 +10,6 @@ namespace Humanae.Dto.Parameters
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
         public string Institution { get; set; }
+        public int ApplicantId { get; set; }
     }
 }

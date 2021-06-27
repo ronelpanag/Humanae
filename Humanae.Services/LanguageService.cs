@@ -4,6 +4,7 @@ using Humanae.Domain.Entities;
 using Humanae.DomainGlobal;
 using Humanae.Dto;
 using Humanae.Dto.Parameters;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,18 @@ namespace Humanae.Services
     public class LanguageService : ILanguageService
     {
         private readonly IRepository<Language> _repository;
+        private readonly IRepository<ApplicantLanguage> _repository1;
 
-        public LanguageService(IRepository<Language> repository)
+        public LanguageService(IRepository<Language> repository,
+            IRepository<ApplicantLanguage> repository1)
         {
             _repository = repository;
+            _repository1 = repository1;
         }
 
-        public async Task<ServiceResult<LanguageDto>> Create(LanguageParameter parameter)
+        public async Task<ServiceResult> Create(LanguageParameter parameter)
         {
-            var result = new ServiceResult<LanguageDto>();
+            var result = new ServiceResult();
 
             try
             {
@@ -33,9 +37,13 @@ namespace Humanae.Services
 
                 await _repository.AddAsync(data);
 
-                var model = await GetById(data.Id);
+                var assignationData = new ApplicantLanguage
+                {
+                    ApplicantId = parameter.ApplicantId,
+                    LanguageId = data.Id
+                };
 
-                result.Data = model.Data;
+                await _repository1.AddAsync(assignationData);
             }
             catch (Exception e)
             {
@@ -70,9 +78,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<LanguageDto>> Edit(LanguageParameter parameter)
+        public async Task<ServiceResult> Edit(LanguageParameter parameter)
         {
-            var result = new ServiceResult<LanguageDto>();
+            var result = new ServiceResult();
 
             try
             {
@@ -81,10 +89,6 @@ namespace Humanae.Services
                 modelToUpdate.Name = parameter.Name;
 
                 await _repository.UpdateAsync(modelToUpdate);
-
-                var model = await GetById(modelToUpdate.Id);
-
-                result.Data = model.Data;
             }
             catch (Exception e)
             {
@@ -124,6 +128,25 @@ namespace Humanae.Services
                 Name = data.Name,
                 IsActive = data.IsActive
             };
+
+            return result;
+        }
+
+        public async Task<ServiceResult<List<LanguageDto>>> GetApplicantLanguages(int applicantId)
+        {
+            var result = new ServiceResult<List<LanguageDto>>();
+
+            var data = await _repository1.Entity()
+                .Where(x => x.ApplicantId == applicantId)
+                .Select(x => new LanguageDto
+                {
+                    Id = x.LanguageId,
+                    Name = x.Language.Name,
+                    IsActive = x.Language.IsActive
+                })
+                .ToListAsync();
+
+            result.Data = data;
 
             return result;
         }

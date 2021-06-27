@@ -10,8 +10,9 @@ namespace Humanae.Contracts.Services
     {
         Task<ServiceResult<IEnumerable<ExperienceDto>>> GetAll();
         Task<ServiceResult<ExperienceDto>> GetById(int id);
-        Task<ServiceResult<ExperienceDto>> Create(ExperienceParameter parameter);
-        Task<ServiceResult<ExperienceDto>> Edit(ExperienceParameter parameter);
+        Task<ServiceResult> Create(ExperienceParameter parameter);
+        Task<ServiceResult> Edit(ExperienceParameter parameter);
         Task<ServiceResult> Delete(DeleteParameter parameter);
+        Task<ServiceResult<List<ExperienceDto>>> GetApplicantExperiences(int applicantId);
     }
 }

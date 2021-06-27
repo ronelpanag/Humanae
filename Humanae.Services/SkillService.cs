@@ -4,6 +4,7 @@ using Humanae.Domain.Entities;
 using Humanae.DomainGlobal;
 using Humanae.Dto;
 using Humanae.Dto.Parameters;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,13 @@ namespace Humanae.Services
     public class SkillService : ISkillService
     {
         private readonly IRepository<Skill> _repository;
+        private readonly IRepository<ApplicantSkill> _applicantSkillRepository;
 
-        public SkillService(IRepository<Skill> repository)
+        public SkillService(IRepository<Skill> repository,
+            IRepository<ApplicantSkill> applicantSkillRepository)
         {
             _repository = repository;
+            _applicantSkillRepository = applicantSkillRepository;
         }
 
         public async Task<ServiceResult<IEnumerable<SkillDto>>> GetAll()
@@ -54,9 +58,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<SkillDto>> Create(SkillParameter parameter)
+        public async Task<ServiceResult> Create(SkillParameter parameter)
         {
-            var result = new ServiceResult<SkillDto>();
+            var result = new ServiceResult();
 
             try
             {
@@ -67,9 +71,13 @@ namespace Humanae.Services
 
                 await _repository.AddAsync(data);
 
-                var model = await GetById(data.Id);
+                var assignationData = new ApplicantSkill
+                {
+                    ApplicantId = parameter.ApplicantId,
+                    SkillId = data.Id
+                };
 
-                result.Data = model.Data;
+                await _applicantSkillRepository.AddAsync(assignationData);
             }
             catch(Exception e)
             {
@@ -79,9 +87,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<SkillDto>> Edit(SkillParameter parameter)
+        public async Task<ServiceResult> Edit(SkillParameter parameter)
         {
-            var result = new ServiceResult<SkillDto>();
+            var result = new ServiceResult();
 
             try
             {
@@ -91,9 +99,6 @@ namespace Humanae.Services
 
                 await _repository.UpdateAsync(modelToUpdate);
 
-                var model = await GetById(modelToUpdate.Id);
-
-                result.Data = model.Data;
             }
             catch(Exception e)
             {
@@ -125,6 +130,25 @@ namespace Humanae.Services
             {
                 result.AddErrorMessage(e);
             }
+
+            return result;
+        }
+
+        public async Task<ServiceResult<List<SkillDto>>> GetApplicantSkills(int applicantId)
+        {
+            var result = new ServiceResult<List<SkillDto>>();
+
+            var data = await _applicantSkillRepository.Entity()
+                .Where(x => x.ApplicantId == applicantId)
+                .Select(x => new SkillDto
+                {
+                    Id = x.SkillId,
+                    Description = x.Skill.Description,
+                    IsActive = x.Skill.IsActive
+                })
+                .ToListAsync();
+
+            result.Data = data;
 
             return result;
         }

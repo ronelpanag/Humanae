@@ -4,6 +4,7 @@ using Humanae.Domain.Entities;
 using Humanae.DomainGlobal;
 using Humanae.Dto;
 using Humanae.Dto.Parameters;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,18 @@ namespace Humanae.Services
     public class TrainingService : ITrainingService
     {
         private readonly IRepository<Training> _repository;
+        private readonly IRepository<ApplicantTraining> _repository1;
 
-        public TrainingService(IRepository<Training> repository)
+        public TrainingService(IRepository<Training> repository,
+            IRepository<ApplicantTraining> repository1)
         {
             _repository = repository;
+            _repository1 = repository1;
         }
 
-        public async Task<ServiceResult<TrainingDto>> Create(TrainingParameter parameter)
+        public async Task<ServiceResult> Create(TrainingParameter parameter)
         {
-            var result = new ServiceResult<TrainingDto>();
+            var result = new ServiceResult();
 
             var data = new Training
             {
@@ -37,9 +41,13 @@ namespace Humanae.Services
             {
                 await _repository.AddAsync(data);
 
-                var model = await GetById(data.Id);
+                var assignationData = new ApplicantTraining
+                {
+                    ApplicantId = parameter.ApplicantId,
+                    TrainingId = data.Id
+                };
 
-                result.Data = model.Data;
+                await _repository1.AddAsync(assignationData);
             }
             catch (Exception e)
             {
@@ -49,9 +57,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<TrainingDto>> Edit(TrainingParameter parameter)
+        public async Task<ServiceResult> Edit(TrainingParameter parameter)
         {
-            var result = new ServiceResult<TrainingDto>();
+            var result = new ServiceResult();
 
             try
             {
@@ -64,10 +72,6 @@ namespace Humanae.Services
                 modelToUpdate.ToDate = parameter.ToDate;
 
                 await _repository.UpdateAsync(modelToUpdate);
-
-                var model = await GetById(modelToUpdate.Id);
-
-                result.Data = model.Data;
             }
             catch (Exception e)
             {
@@ -137,6 +141,28 @@ namespace Humanae.Services
             {
                 result.AddErrorMessage(e);
             }
+
+            return result;
+        }
+
+        public async Task<ServiceResult<List<TrainingDto>>> GetApplicantTrainings(int applicantId)
+        {
+            var result = new ServiceResult<List<TrainingDto>>();
+
+            var data = await _repository1.Entity()
+                .Where(x => x.ApplicantId == applicantId)
+                .Select(x => new TrainingDto
+                {
+                    Id = x.TrainingId,
+                    Description = x.Training.Description,
+                    Institution = x.Training.Institution,
+                    FromDate = x.Training.FromDate,
+                    ToDate = x.Training.ToDate,
+                    Level = x.Training.Level
+                })
+                .ToListAsync();
+
+            result.Data = data;
 
             return result;
         }

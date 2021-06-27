@@ -17,6 +17,7 @@ namespace Humanae.Data
             modelBuilder.Entity<ApplicantExperience>().HasNoKey();
             modelBuilder.Entity<ApplicantSkill>().HasNoKey();
             modelBuilder.Entity<ApplicantTraining>().HasNoKey();
+            modelBuilder.Entity<ApplicantLanguage>().HasNoKey();
         }
 
         public DbSet<Position> Positions { get; set; }
@@ -30,6 +31,7 @@ namespace Humanae.Data
         public DbSet<ApplicantExperience> ApplicantExperiences { get; set; }
         public DbSet<ApplicantSkill> ApplicantSkills { get; set; }
         public DbSet<ApplicantTraining> ApplicantTrainings { get; set; }
+        public DbSet<ApplicantLanguage> ApplicantLanguages { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }

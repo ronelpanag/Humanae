@@ -4,6 +4,7 @@ using Humanae.Domain.Entities;
 using Humanae.DomainGlobal;
 using Humanae.Dto;
 using Humanae.Dto.Parameters;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,18 @@ namespace Humanae.Services
     public class ExperienceService : IExperienceService
     {
         private readonly IRepository<Experience> _repository;
+        private readonly IRepository<ApplicantExperience> _repository1;
 
-        public ExperienceService(IRepository<Experience> repository)
+        public ExperienceService(IRepository<Experience> repository,
+            IRepository<ApplicantExperience> repository1)
         {
             _repository = repository;
+            _repository1 = repository1;
         }
 
-        public async Task<ServiceResult<ExperienceDto>> Create(ExperienceParameter parameter)
+        public async Task<ServiceResult> Create(ExperienceParameter parameter)
         {
-            var result = new ServiceResult<ExperienceDto>();
+            var result = new ServiceResult();
 
             var data = new Experience
             {
@@ -37,9 +41,13 @@ namespace Humanae.Services
             {
                 await _repository.AddAsync(data);
 
-                var model = await GetById(data.Id);
+                var assignationData = new ApplicantExperience
+                {
+                    ApplicantId = parameter.ApplicantId,
+                    ExperienceId = data.Id
+                };
 
-                result.Data = model.Data;
+                await _repository1.AddAsync(assignationData);
             }
             catch (Exception e)
             {
@@ -73,9 +81,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<ExperienceDto>> Edit(ExperienceParameter parameter)
+        public async Task<ServiceResult> Edit(ExperienceParameter parameter)
         {
-            var result = new ServiceResult<ExperienceDto>();
+            var result = new ServiceResult();
 
             try
             {
@@ -89,9 +97,7 @@ namespace Humanae.Services
 
                 await _repository.UpdateAsync(modelToUpdate);
 
-                var model = await GetById(modelToUpdate.Id);
 
-                result.Data = model.Data;
             }
             catch (Exception e)
             {
@@ -137,6 +143,28 @@ namespace Humanae.Services
                 ToDate = data.ToDate,
                 Salary = data.Salary
             };
+
+            return result;
+        }
+
+        public async Task<ServiceResult<List<ExperienceDto>>> GetApplicantExperiences(int applicantId)
+        {
+            var result = new ServiceResult<List<ExperienceDto>>();
+
+            var data = await _repository1.Entity()
+                .Where(x => x.ApplicantId == applicantId)
+                .Select(x => new ExperienceDto
+                {
+                    Id = x.ExperienceId,
+                    JobTitle = x.Experience.JobTitle,
+                    CompanyName = x.Experience.CompanyName,
+                    FromDate = x.Experience.FromDate,
+                    ToDate = x.Experience.ToDate,
+                    Salary = x.Experience.Salary
+                })
+                .ToListAsync();
+
+            result.Data = data;
 
             return result;
         }
