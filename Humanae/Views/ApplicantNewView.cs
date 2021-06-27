@@ -17,7 +17,7 @@ namespace Humanae.Views
     {
         private IApplicantService _applicantService;
         private IPositionService _positionService;
-        private List<PositionDto> Positions = new List<PositionDto>();
+        List<PositionDto> Positions = new List<PositionDto>();
 
         public ApplicantNewView(IApplicantService applicantService,
             IPositionService positionService)
@@ -29,7 +29,7 @@ namespace Humanae.Views
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            var selectedItem = cmbAppliedPosition.SelectedIndex.ToString();
+            var selectedItem = cmbAppliedPosition.SelectedItem.ToString();
             var selectedPosition = Positions
                 .FirstOrDefault(x => x.Name == selectedItem);
 
@@ -42,11 +42,11 @@ namespace Humanae.Views
                 AppliedPositionId = selectedPosition.Id
             };
 
-            var serviceResult = await _applicantService.Create(model);
+            var result = await _applicantService.Create(model);
 
-            if (serviceResult.ExcecutedSuccessfully)
+            if (result.ExcecutedSuccessfully)
             {
-                var dialogResult = MessageBox.Show(serviceResult.Message,
+                var dialogResult = MessageBox.Show(result.Message,
                     "Operacion exitosa",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -55,6 +55,15 @@ namespace Humanae.Views
                 {
                     Close();
                 }
+
+                var child = (Form)Program.ServiceProvider
+                    .GetService(typeof(ApplicantListView));
+
+                child.Show();
+            }
+            else
+            {
+                MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -84,6 +93,13 @@ namespace Humanae.Views
             }
             
             return serviceResult.Data;
+        }
+
+        private void cmbAppliedPosition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedItem = cmbAppliedPosition.SelectedItem.ToString();
+
+            textBox4.Text = Positions.FirstOrDefault(x => x.Name == selectedItem).Department;
         }
     }
 }

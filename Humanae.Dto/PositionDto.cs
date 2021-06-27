@@ -6,11 +6,10 @@ namespace Humanae.Dto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public RiskLevel RiskLevel { get; set; }
+        public string RiskLevel { get; set; }
         public decimal MinSalary { get; set; }
         public decimal MaxSalary { get; set; }
-        public bool IsActive { get; set; } = true;
-        public int DepartmentId { get; set; }
         public string Department { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

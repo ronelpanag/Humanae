@@ -74,9 +74,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<EmployeeDto>> Edit(EmployeeParameter parameter)
+        public async Task<ServiceResult> Edit(EmployeeParameter parameter)
         {
-            var result = new ServiceResult<EmployeeDto>();
+            var result = new ServiceResult();
 
             try
             {
@@ -92,9 +92,6 @@ namespace Humanae.Services
 
                 await _repository.UpdateAsync(modelToUpdate);
 
-                var model = await GetById(modelToUpdate.Id);
-
-                result.Data = model.Data;
             }
             catch (Exception e)
             {

@@ -1,9 +1,11 @@
 ﻿using Humanae.Contracts.Services;
+using Humanae.Dto;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,12 +27,28 @@ namespace Humanae.Views
 
             if (result.ExcecutedSuccessfully)
             {
-                foreach (var item in result.Data)
-                {
-                    bindingSource1.Add(item);
-                }
+                var data = result.Data.ToList();
 
+                if (data.Count == 0)
+                {
+                    bindingSource1.Add(new PositionDto());
+                }
+                else
+                {
+                    foreach (var item in result.Data)
+                    {
+                        bindingSource1.Add(item);
+                    }
+                }
+                
                 dataGridView1.DataSource = bindingSource1;
+
+                dataGridView1.Columns[0].Visible = false;
+                dataGridView1.Columns[1].HeaderText = "Nombre";
+                dataGridView1.Columns[2].HeaderText = "Nivel de Riesgo";
+                dataGridView1.Columns[3].HeaderText = "Salario Minimo";
+                dataGridView1.Columns[4].HeaderText = "SalarioMaximo";
+                dataGridView1.Columns[5].HeaderText = "Estado";
             }
             else
             {
@@ -48,9 +66,12 @@ namespace Humanae.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var child = new PositionNewView();
+            var child = (Form)Program.ServiceProvider
+                .GetService(typeof(PositionNewView));
 
-            child.ShowDialog();
+            child.Show();
+
+            Hide();
         }
     }
 }

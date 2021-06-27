@@ -17,7 +17,7 @@ namespace Humanae.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var child = (Form)Program.serviceProvider
+            var child = (Form)Program.ServiceProvider
                 .GetService(typeof(EmployeeListView));
 
             child.Show();
@@ -25,7 +25,7 @@ namespace Humanae.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var child = (Form)Program.serviceProvider
+            var child = (Form)Program.ServiceProvider
                 .GetService(typeof(ApplicantListView));
 
             child.Show();

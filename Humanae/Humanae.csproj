@@ -45,6 +45,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ExperienceNewView - Copy.resx">
+      <DependentUpon>TrainingNewView.resx</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

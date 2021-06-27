@@ -6,9 +6,9 @@ namespace Humanae.Dto
     {
         public int Id { get; set; }
         public string CompanyName { get; set; }
+        public string JobTitle { get; set; }
+        public decimal Salary { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime? ToDate { get; set; }
-        public decimal Salary { get; set; }
-        public string JobTitle { get; set; }
     }
 }

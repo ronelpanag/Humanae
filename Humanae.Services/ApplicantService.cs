@@ -15,10 +15,13 @@ namespace Humanae.Services
     public class ApplicantService : IApplicantService
     {
         private readonly IRepository<Applicant> _repository;
+        private readonly IEmployeeService _employeeService;
 
-        public ApplicantService(IRepository<Applicant> repository)
+        public ApplicantService(IRepository<Applicant> repository,
+            IEmployeeService employeeService)
         {
             _repository = repository;
+            _employeeService = employeeService;
         }
 
         public async Task<ServiceResult<IEnumerable<ApplicantDto>>> GetAll()
@@ -33,9 +36,7 @@ namespace Humanae.Services
                     LastName = x.LastName,
                     Identification = x.Identification,
                     RecommendedBy = x.RecommendedBy,
-                    AppliedPositionId = x.AppliedPositionId,
                     AppliedPosition = x.AppliedPosition.Name,
-                    DepartmentId = x.AppliedPosition.DepartmentId,
                     Department = x.AppliedPosition.Department.Name,
                     IsActive = x.IsActive
                 })
@@ -58,9 +59,7 @@ namespace Humanae.Services
                     LastName = x.LastName,
                     Identification = x.Identification,
                     RecommendedBy = x.RecommendedBy,
-                    AppliedPositionId = x.AppliedPositionId,
                     AppliedPosition = x.AppliedPosition.Name,
-                    DepartmentId = x.AppliedPosition.DepartmentId,
                     Department = x.AppliedPosition.Department.Name,
                     IsActive = x.IsActive
                 })
@@ -144,6 +143,28 @@ namespace Humanae.Services
             }
 
             return result;
+        }
+
+        public async Task<ServiceResult> ConvertToEmployee(int applicantId, decimal salary, DateTime startdate)
+        {
+            var data = await _repository.Entity().FirstOrDefaultAsync(x => x.Id == applicantId);
+
+            var parameter = new EmployeeParameter
+            {
+                FirstName = data.FirstName,
+                LastName = data.LastName,
+                PositionId = data.AppliedPositionId,
+                Identification = data.Identification,
+                MonthlySalary = salary,
+                ApplicantId = data.Id,
+                StartDate = startdate
+            };
+
+            data.IsActive = false;
+
+            await _repository.UpdateAsync(data);
+
+            return await _employeeService.Create(parameter);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Humanae.Domain.Entities
         [Required]
         public string Name { get; set; }
         [Required]
-        public RiskLevel RiskLevel { get; set; }
+        public string RiskLevel { get; set; }
         [Required]
         public decimal MinSalary { get; set; }
         [Required]

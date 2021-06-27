@@ -177,6 +177,7 @@ namespace Humanae.Views
             this.cmbAppliedPosition.Name = "cmbAppliedPosition";
             this.cmbAppliedPosition.Size = new System.Drawing.Size(453, 33);
             this.cmbAppliedPosition.TabIndex = 14;
+            this.cmbAppliedPosition.SelectedIndexChanged += new System.EventHandler(this.cmbAppliedPosition_SelectedIndexChanged);
             // 
             // ApplicantNewView
             // 
