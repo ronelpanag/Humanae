@@ -324,7 +324,7 @@ namespace Humanae.Views
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(1306, 763);
+            this.button4.Location = new System.Drawing.Point(1330, 763);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(112, 34);
             this.button4.TabIndex = 39;
@@ -347,7 +347,7 @@ namespace Humanae.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1499, 1236);
+            this.ClientSize = new System.Drawing.Size(1499, 1050);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -376,6 +376,7 @@ namespace Humanae.Views
             this.Controls.Add(this.label2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ApplicantDetailsView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Humanae - Detalles del Candidato";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ApplicantDetailsView_Load);

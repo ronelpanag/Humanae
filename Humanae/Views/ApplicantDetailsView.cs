@@ -19,21 +19,18 @@ namespace Humanae.Views
         private ILanguageService _languageService;
         private ISkillService _skillService;
         private ITrainingService _trainingService;
-        private IEmployeeService _employeeService;
 
         public ApplicantDetailsView(IApplicantService applicantService,
             IExperienceService experienceService,
             ILanguageService languageService,
             ISkillService skillService,
-            ITrainingService trainingService,
-            IEmployeeService employeeService)
+            ITrainingService trainingService)
         {
             _applicantService = applicantService;
             _experienceService = experienceService;
             _languageService = languageService;
             _skillService = skillService;
             _trainingService = trainingService;
-            _employeeService = employeeService;
 
             InitializeComponent();
         }
@@ -214,14 +211,14 @@ namespace Humanae.Views
         private void button4_Click(object sender, EventArgs e)
         {
             var child = (Form)Program.ServiceProvider
-                .GetService(typeof(LanguageNewView));
+                .GetService(typeof(AssignLanguageView));
 
             child.Show();
         
             Close();
         }
 
-        private async void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
             var child = (Form)Program.ServiceProvider
                 .GetService(typeof(NewEmployeeNewView));

@@ -29,7 +29,7 @@ namespace Humanae.Services
             var result = new ServiceResult<IEnumerable<ApplicantDto>>();
 
             var data = await _repository.Entity()
-                .Where(x => !x.IsActive)
+                .Where(x => x.IsActive)
                 .Select(x => new ApplicantDto
                 {
                     Id = x.Id,

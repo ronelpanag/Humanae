@@ -76,6 +76,8 @@ namespace Humanae
                 .AddTransient<LanguageNewView>()
                 .AddTransient<SkillNewView>()
                 .AddTransient<TrainingNewView>()
+                .AddTransient<LanguageListView>()
+                .AddTransient<AssignLanguageView>()
                 .AddTransient<NewEmployeeNewView>();
         }
     }

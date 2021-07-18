@@ -148,6 +148,7 @@ namespace Humanae.Views
             this.button1.TabIndex = 11;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -204,6 +205,7 @@ namespace Humanae.Views
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ApplicantNewView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Humanae - Nuevo Candidato";
             this.Load += new System.EventHandler(this.ApplicantNewView_Load);
             this.ResumeLayout(false);

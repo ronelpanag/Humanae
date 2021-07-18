@@ -94,6 +94,7 @@ namespace Humanae.Views
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LanguageNewView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Humanae - Nuevo Idioma";
             this.ResumeLayout(false);
             this.PerformLayout();

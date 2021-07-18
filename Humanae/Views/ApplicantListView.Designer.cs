@@ -83,6 +83,7 @@ namespace Humanae.Views
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ApplicantListView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado de Candidatos";
             this.Load += new System.EventHandler(this.ApplicantListView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();

@@ -1,4 +1,5 @@
 ﻿using Humanae.Contracts.Services;
+using Humanae.DomainGlobal;
 using Humanae.Dto;
 using Humanae.Dto.Parameters;
 using System;
@@ -29,6 +30,15 @@ namespace Humanae.Views
 
         private async void button2_Click(object sender, EventArgs e)
         {
+            txtIdentification.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+
+            if (!ValidationHelper.ValidateIdentification(txtIdentification.Text))
+            {
+                MessageBox.Show("Cedula invalida", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            txtIdentification.TextMaskFormat = MaskFormat.IncludeLiterals;
+
             var selectedItem = cmbAppliedPosition.SelectedItem.ToString();
             var selectedPosition = Positions
                 .FirstOrDefault(x => x.Name == selectedItem);
@@ -100,6 +110,16 @@ namespace Humanae.Views
             var selectedItem = cmbAppliedPosition.SelectedItem.ToString();
 
             textBox4.Text = Positions.FirstOrDefault(x => x.Name == selectedItem).Department;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var child = (Form)Program.ServiceProvider
+                .GetService(typeof(ApplicantListView));
+
+            child.Show();
+
+            Close();
         }
     }
 }

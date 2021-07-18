@@ -82,6 +82,7 @@ namespace Humanae.Views
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PositionListView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Humanae - Listado de Posiciones";
             this.Load += new System.EventHandler(this.PositionListView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();

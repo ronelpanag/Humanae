@@ -38,11 +38,11 @@ namespace Humanae.Views
             this.label6 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.txtInstitution = new System.Windows.Forms.TextBox();
-            this.txtLevel = new System.Windows.Forms.TextBox();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -114,13 +114,6 @@ namespace Humanae.Views
             this.txtInstitution.Size = new System.Drawing.Size(394, 31);
             this.txtInstitution.TabIndex = 7;
             // 
-            // txtLevel
-            // 
-            this.txtLevel.Location = new System.Drawing.Point(333, 265);
-            this.txtLevel.Name = "txtLevel";
-            this.txtLevel.Size = new System.Drawing.Size(394, 31);
-            this.txtLevel.TabIndex = 8;
-            // 
             // dtFrom
             // 
             this.dtFrom.Location = new System.Drawing.Point(333, 341);
@@ -155,16 +148,29 @@ namespace Humanae.Views
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Básico",
+            "Intermedio",
+            "Avanzado"});
+            this.comboBox1.Location = new System.Drawing.Point(333, 271);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(394, 33);
+            this.comboBox1.TabIndex = 13;
+            // 
             // TrainingNewView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(941, 594);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dtTo);
             this.Controls.Add(this.dtFrom);
-            this.Controls.Add(this.txtLevel);
             this.Controls.Add(this.txtInstitution);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.label6);
@@ -175,6 +181,7 @@ namespace Humanae.Views
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TrainingNewView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Humanae - Nueva Capacitación";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -191,10 +198,10 @@ namespace Humanae.Views
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtInstitution;
-        private System.Windows.Forms.TextBox txtLevel;
         private System.Windows.Forms.DateTimePicker dtFrom;
         private System.Windows.Forms.DateTimePicker dtTo;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

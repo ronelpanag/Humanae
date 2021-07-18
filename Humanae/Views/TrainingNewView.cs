@@ -23,28 +23,39 @@ namespace Humanae.Views
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            var parameter = new TrainingParameter
+            bool validationSucceeded = true;
+
+            if (dtFrom.Value > DateTime.Now || dtTo.Value > DateTime.Now)
             {
-                ApplicantId = StatefulHelper.CalledId,
-                Institution = txtInstitution.Text,
-                Description = txtDescription.Text,
-                Level = txtLevel.Text,
-                FromDate = dtFrom.Value,
-                ToDate = dtTo.Value
-            };
-
-            var result = await _trainingService.Create(parameter);
-
-            if (result.ExcecutedSuccessfully)
-            {
-                MessageBox.Show(result.Message, "Registro exitoso", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                Close();
+                validationSucceeded = false;
+                MessageBox.Show("La fecha no puede ser futura", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
+
+            if (validationSucceeded)
             {
-                MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var parameter = new TrainingParameter
+                {
+                    ApplicantId = StatefulHelper.CalledId,
+                    Institution = txtInstitution.Text,
+                    Description = txtDescription.Text,
+                    Level = comboBox1.SelectedItem.ToString(),
+                    FromDate = dtFrom.Value,
+                    ToDate = dtTo.Value
+                };
+
+                var result = await _trainingService.Create(parameter);
+
+                if (result.ExcecutedSuccessfully)
+                {
+                    MessageBox.Show(result.Message, "Registro exitoso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

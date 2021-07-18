@@ -23,28 +23,48 @@ namespace Humanae.Views
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            var parameter = new ExperienceParameter
+            bool validationSucceeded = true;
+
+            decimal salary = 0;
+            decimal.TryParse(txtSalary.Text, out salary);
+
+            if (salary <= 0)
             {
-                ApplicantId = StatefulHelper.CalledId,
-                CompanyName = txtCompany.Text,
-                JobTitle = txtTitle.Text,
-                Salary = decimal.Parse(txtSalary.Text),
-                FromDate = dtFrom.Value,
-                ToDate = dtTo.Value
-            };
-
-            var result = await _experienceService.Create(parameter);
-
-            if (result.ExcecutedSuccessfully)
-            {
-                MessageBox.Show(result.Message, "Registro exitoso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                Close();
+                validationSucceeded = false;
+                MessageBox.Show("Salario no puede ser menor o igual a 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
+
+            if (dtFrom.Value > DateTime.Now || dtTo.Value > DateTime.Now)
             {
-                MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                validationSucceeded = false;
+                MessageBox.Show("La fecha no puede ser futura", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (validationSucceeded)
+            {
+                var parameter = new ExperienceParameter
+                {
+                    ApplicantId = StatefulHelper.CalledId,
+                    CompanyName = txtCompany.Text,
+                    JobTitle = txtTitle.Text,
+                    Salary = salary,
+                    FromDate = dtFrom.Value,
+                    ToDate = dtTo.Value
+                };
+
+                var result = await _experienceService.Create(parameter);
+
+                if (result.ExcecutedSuccessfully)
+                {
+                    MessageBox.Show(result.Message, "Registro exitoso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

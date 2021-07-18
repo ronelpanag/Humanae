@@ -172,6 +172,7 @@ namespace Humanae.Views
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ExperienceCreateView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ExperienceCreateView";
             this.ResumeLayout(false);
             this.PerformLayout();

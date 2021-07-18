@@ -71,6 +71,7 @@ namespace Humanae.Views
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UserListView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Humanae - Listado de Usuarios";
             this.Load += new System.EventHandler(this.UserListView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();

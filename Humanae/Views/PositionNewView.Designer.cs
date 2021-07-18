@@ -29,6 +29,7 @@ namespace Humanae.Views
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PositionNewView));
             this.txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -95,6 +96,7 @@ namespace Humanae.Views
             this.button1.TabIndex = 8;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -148,6 +150,7 @@ namespace Humanae.Views
             // 
             // cmbDepartment
             // 
+            this.cmbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDepartment.FormattingEnabled = true;
             this.cmbDepartment.Location = new System.Drawing.Point(234, 324);
             this.cmbDepartment.Name = "cmbDepartment";
@@ -172,8 +175,10 @@ namespace Humanae.Views
             this.Controls.Add(this.txtMaxSalary);
             this.Controls.Add(this.txtMinSalary);
             this.Controls.Add(this.txtName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PositionNewView";
-            this.Text = "PositionNewView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Humanae - Nueva Posición";
             this.Load += new System.EventHandler(this.PositionNewView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
