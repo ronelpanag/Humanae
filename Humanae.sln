@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Humanae.DomainGlobal", "Hum
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Humanae.Services", "Humanae.Services\Humanae.Services.csproj", "{29857724-9C3D-4C24-9094-8E2704021413}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Humanae.Reports", "Humanae.Reports\Humanae.Reports.csproj", "{5154AF6C-23D5-4085-BCE1-80665D847356}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{29857724-9C3D-4C24-9094-8E2704021413}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29857724-9C3D-4C24-9094-8E2704021413}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29857724-9C3D-4C24-9094-8E2704021413}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5154AF6C-23D5-4085-BCE1-80665D847356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5154AF6C-23D5-4085-BCE1-80665D847356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5154AF6C-23D5-4085-BCE1-80665D847356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5154AF6C-23D5-4085-BCE1-80665D847356}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

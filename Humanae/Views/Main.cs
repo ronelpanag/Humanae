@@ -13,6 +13,7 @@ namespace Humanae.Views
         public Main()
         {
             InitializeComponent();
+            labelWelcome.Text = $"Hola, {Context.UserInformation.Employee}";
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -223,9 +223,12 @@ namespace Humanae.Views
 
         private async void button5_Click(object sender, EventArgs e)
         {
-            var applicantData = await _applicantService.GetById(StatefulHelper.CalledId);
+            var child = (Form)Program.ServiceProvider
+                .GetService(typeof(NewEmployeeNewView));
 
-            
+            child.Show();
+
+            Close();
         }
     }
 }

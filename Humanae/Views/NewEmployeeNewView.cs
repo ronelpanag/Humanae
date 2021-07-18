@@ -31,11 +31,11 @@ namespace Humanae.Views
             if (result.ExcecutedSuccessfully)
             {
                 var child = (Form)Program.ServiceProvider
-                    .GetService(typeof(DepartmentListView));
+                    .GetService(typeof(EmployeeListView));
 
                 child.Show();
 
-                Hide();
+                Close();
             }
             else
             {

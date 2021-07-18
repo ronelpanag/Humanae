@@ -75,7 +75,8 @@ namespace Humanae
                 .AddTransient<ExperienceCreateView>()
                 .AddTransient<LanguageNewView>()
                 .AddTransient<SkillNewView>()
-                .AddTransient<TrainingNewView>();
+                .AddTransient<TrainingNewView>()
+                .AddTransient<NewEmployeeNewView>();
         }
     }
 }

@@ -9,6 +9,7 @@
     <ProjectReference Include="..\Humanae.DomainGlobal\Humanae.DomainGlobal.csproj" />
     <ProjectReference Include="..\Humanae.Domain\Humanae.Domain.csproj" />
     <ProjectReference Include="..\Humanae.Dto\Humanae.Dto.csproj" />
+    <ProjectReference Include="..\Humanae.Reports\Humanae.Reports.csproj" />
     <ProjectReference Include="..\Humanae.Repository\Humanae.Repositories.csproj" />
   </ItemGroup>
 

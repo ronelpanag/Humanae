@@ -172,6 +172,7 @@ namespace Humanae.Views
             // 
             // cmbAppliedPosition
             // 
+            this.cmbAppliedPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAppliedPosition.FormattingEnabled = true;
             this.cmbAppliedPosition.Location = new System.Drawing.Point(186, 352);
             this.cmbAppliedPosition.Name = "cmbAppliedPosition";

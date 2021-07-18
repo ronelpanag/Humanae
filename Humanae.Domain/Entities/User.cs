@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Humanae.DomainGlobal;
+using System.ComponentModel.DataAnnotations;
 
 namespace Humanae.Domain.Entities
 {
@@ -13,6 +14,7 @@ namespace Humanae.Domain.Entities
         public string Password { get; set; }
         public int? EmployeeId { get; set; }
         public Employee Employee { get; set; }
+        public Role Role { get; set; }
         public bool IsActive { get; set; } = true;
     }
 }

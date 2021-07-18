@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ActiveEmployees.vsrepx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="ActiveEmployees.vsrepx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Reporting.Core" Version="21.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Humanae.Dto\Humanae.Dto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ActiveEmployees.cs">
+      <DependentUpon>ActiveEmployees.vsrepx</DependentUpon>
+    </Compile>
+    <Compile Update="ActiveEmployees.Designer.cs">
+      <DependentUpon>ActiveEmployees.vsrepx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>
