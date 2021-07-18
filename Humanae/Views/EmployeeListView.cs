@@ -80,6 +80,7 @@ namespace Humanae.Views
                 var report = new ActiveEmployees();
                 report.DataSource = serviceResult.Data.ToList();
                 report.CreateDocument();
+                report.PaperName = $"Reporte de empleados activos {DateTime.Now:dd-MMM-yyyy}";
                 await report.PrintAsync();
             }
         }
