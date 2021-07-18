@@ -126,7 +126,7 @@ namespace Humanae.Views
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Humanae - Configuraciones";
             this.ResumeLayout(false);
             this.PerformLayout();

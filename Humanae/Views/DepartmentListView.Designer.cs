@@ -81,7 +81,7 @@ namespace Humanae.Views
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "DepartmentListView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Humanae - Listado de Departamentos";
             this.Load += new System.EventHandler(this.DepartmentListView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

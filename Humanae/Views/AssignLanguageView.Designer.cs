@@ -96,6 +96,7 @@ namespace Humanae.Views
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AssignLanguageView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Humanae - Asignar Idioma";
             this.Load += new System.EventHandler(this.AssignLanguageView_Load);
             this.ResumeLayout(false);
