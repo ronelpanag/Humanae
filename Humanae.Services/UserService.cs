@@ -40,7 +40,7 @@ namespace Humanae.Services
                         Id = x.Id,
                         Username = x.Username,
                         Email = x.Email,
-                        Employee = x.Employee.FirstName + x.Employee.LastName,
+                        Employee = x.Employee.FirstName + " " + x.Employee.LastName,
                         IsActive = x.IsActive,
                         Role = x.Role
                     })
@@ -51,16 +51,6 @@ namespace Humanae.Services
                     result.AddErrorMessage("Usuario y/o contraseña incorrectos.");
                     return result;
                 }
-
-
-
-                //var decryptedPassword = SecurityHelper.Decrypt(data.Password, parameter.Password);
-
-                //if (!string.Equals(decryptedPassword, parameter.Password))
-                //{
-                //    result.AddErrorMessage("Usuario y/o contraseña incorrectos.");
-                //    return result;
-                //}
 
                 result.Data = data;
 
@@ -106,6 +96,28 @@ namespace Humanae.Services
             var result = new ServiceResult<List<UserDto>>();
 
             var data = await _repository.Entity()
+                .Select(x => new UserDto
+                {
+                    Id = x.Id,
+                    Username = x.Username,
+                    Email = x.Email,
+                    Employee = x.Employee.FirstName + x.Employee.LastName,
+                    IsActive = x.IsActive,
+                    Role = x.Role
+                })
+                .ToListAsync();
+
+            result.Data = data;
+
+            return result;
+        }
+
+        public async Task<ServiceResult<List<UserDto>>> GetActives()
+        {
+            var result = new ServiceResult<List<UserDto>>();
+
+            var data = await _repository.Entity()
+                .Where(x => x.IsActive)
                 .Select(x => new UserDto
                 {
                     Id = x.Id,

@@ -11,5 +11,6 @@ namespace Humanae.Contracts.Services
         Task<ServiceResult<UserDto>> Login(AuthenticateParameter parameter);
         Task<ServiceResult> Create(CreateUserParameter parameter);
         Task<ServiceResult<List<UserDto>>> GetAll();
+        Task<ServiceResult<List<UserDto>>> GetActives();
     }
 }

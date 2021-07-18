@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <None Remove="ActiveEmployees.vsrepx" />
+    <None Remove="ActiveUsers.vsrepx" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="ActiveEmployees.vsrepx" />
+    <EmbeddedResource Include="ActiveUsers.vsrepx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +28,12 @@
     </Compile>
     <Compile Update="ActiveEmployees.Designer.cs">
       <DependentUpon>ActiveEmployees.vsrepx</DependentUpon>
+    </Compile>
+    <Compile Update="ActiveUsers.cs">
+      <DependentUpon>ActiveUsers.vsrepx</DependentUpon>
+    </Compile>
+    <Compile Update="ActiveUsers.Designer.cs">
+      <DependentUpon>ActiveUsers.vsrepx</DependentUpon>
     </Compile>
   </ItemGroup>
 

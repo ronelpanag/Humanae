@@ -18,18 +18,32 @@ namespace Humanae.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var child = (Form)Program.ServiceProvider
+            if (Context.UserInformation.Role == DomainGlobal.Role.HR)
+            {
+                var child = (Form)Program.ServiceProvider
                 .GetService(typeof(EmployeeListView));
 
-            child.Show();
+                child.Show();
+            }
+            else
+            {
+                MessageBox.Show("No posee permisos para acceder a esta funcionalidad.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var child = (Form)Program.ServiceProvider
+            if (Context.UserInformation.Role == DomainGlobal.Role.HR)
+            {
+                var child = (Form)Program.ServiceProvider
                 .GetService(typeof(ApplicantListView));
 
-            child.Show();
+                child.Show();
+            }
+            else
+            {
+                MessageBox.Show("No posee permisos para acceder a esta funcionalidad.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using Humanae.Contracts.Services;
+using Humanae.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,5 +53,28 @@ namespace Humanae.Views
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var child = (Form)Program.ServiceProvider
+                .GetService(typeof(UserNewView));
+
+            child.Show();
+
+            Close();
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            var serviceResult = await _userService.GetActives();
+
+            if (serviceResult.ExcecutedSuccessfully)
+            {
+                var report = new ActiveUsers();
+                report.DataSource = serviceResult.Data;
+                report.CreateDocument();
+                report.ExportOptions.PrintPreview.DefaultFileName = $"Reporte de usuarios activos {DateTime.Now:dd-MMM-yyyy}";
+                await report.PrintAsync();
+            }
+        }
     }
 }
