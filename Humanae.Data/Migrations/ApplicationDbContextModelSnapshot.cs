@@ -60,11 +60,18 @@ namespace Humanae.Data.Migrations
 
             modelBuilder.Entity("Humanae.Domain.Entities.ApplicantExperience", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("ApplicantId")
                         .HasColumnType("int");
 
                     b.Property<int>("ExperienceId")
                         .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ApplicantId");
 
@@ -75,11 +82,18 @@ namespace Humanae.Data.Migrations
 
             modelBuilder.Entity("Humanae.Domain.Entities.ApplicantLanguage", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("ApplicantId")
                         .HasColumnType("int");
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ApplicantId");
 
@@ -90,11 +104,18 @@ namespace Humanae.Data.Migrations
 
             modelBuilder.Entity("Humanae.Domain.Entities.ApplicantSkill", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("ApplicantId")
                         .HasColumnType("int");
 
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ApplicantId");
 
@@ -105,11 +126,18 @@ namespace Humanae.Data.Migrations
 
             modelBuilder.Entity("Humanae.Domain.Entities.ApplicantTraining", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("ApplicantId")
                         .HasColumnType("int");
 
                     b.Property<int>("TrainingId")
                         .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ApplicantId");
 
@@ -250,8 +278,9 @@ namespace Humanae.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RiskLevel")
-                        .HasColumnType("int");
+                    b.Property<string>("RiskLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -329,6 +358,9 @@ namespace Humanae.Data.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.Property<string>("Username")
                         .IsRequired()

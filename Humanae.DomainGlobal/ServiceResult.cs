@@ -5,7 +5,7 @@ namespace Humanae.DomainGlobal
     public class ServiceResult
     {
         public bool ExcecutedSuccessfully { get; set; } = true;
-        public string Message { get; set; }
+        public string Message { get; set; } = "La operación se ha realizado de manera exitosa.";
 
         public void AddMessage(string message)
         {

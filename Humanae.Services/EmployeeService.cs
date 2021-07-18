@@ -74,9 +74,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<EmployeeDto>> Edit(EmployeeParameter parameter)
+        public async Task<ServiceResult> Edit(EmployeeParameter parameter)
         {
-            var result = new ServiceResult<EmployeeDto>();
+            var result = new ServiceResult();
 
             try
             {
@@ -92,9 +92,6 @@ namespace Humanae.Services
 
                 await _repository.UpdateAsync(modelToUpdate);
 
-                var model = await GetById(modelToUpdate.Id);
-
-                result.Data = model.Data;
             }
             catch (Exception e)
             {
@@ -104,9 +101,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<IEnumerable<EmployeeDto>>> GetAll()
+        public async Task<ServiceResult<List<EmployeeDto>>> GetAll()
         {
-            var result = new ServiceResult<IEnumerable<EmployeeDto>>();
+            var result = new ServiceResult<List<EmployeeDto>>();
 
             var data = await _repository.Entity()
                 .Select(x => new EmployeeDto
@@ -150,6 +147,33 @@ namespace Humanae.Services
                     IsActive = x.IsActive
                 })
                 .FirstOrDefaultAsync(x => x.Id == id);
+
+            result.Data = data;
+
+            return result;
+        }
+
+        public async Task<ServiceResult<IEnumerable<EmployeeDto>>> GetActives()
+        {
+            var result = new ServiceResult<IEnumerable<EmployeeDto>>();
+
+            var data = await _repository.Entity()
+                .Where(x => x.IsActive)
+                .Select(x => new EmployeeDto
+                {
+                    Id = x.Id,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    Identification = x.Identification,
+                    PositionId = x.PositionId,
+                    Position = x.Position.Name,
+                    DepartmentId = x.Position.DepartmentId,
+                    Department = x.Position.Department.Name,
+                    MonthlySalary = x.MonthlySalary,
+                    StartDate = x.StartDate,
+                    IsActive = x.IsActive
+                })
+                .ToListAsync();
 
             result.Data = data;
 

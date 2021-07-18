@@ -36,14 +36,6 @@ namespace Humanae.Services
                 };
 
                 await _repository.AddAsync(data);
-
-                var assignationData = new ApplicantLanguage
-                {
-                    ApplicantId = parameter.ApplicantId,
-                    LanguageId = data.Id
-                };
-
-                await _repository1.AddAsync(assignationData);
             }
             catch (Exception e)
             {
@@ -98,9 +90,9 @@ namespace Humanae.Services
             return result;
         }
 
-        public async Task<ServiceResult<IEnumerable<LanguageDto>>> GetAll()
+        public async Task<ServiceResult<List<LanguageDto>>> GetAll()
         {
-            var result = new ServiceResult<IEnumerable<LanguageDto>>();
+            var result = new ServiceResult<List<LanguageDto>>();
 
             var data = await _repository.GetAllAsync();
 
@@ -147,6 +139,28 @@ namespace Humanae.Services
                 .ToListAsync();
 
             result.Data = data;
+
+            return result;
+        }
+
+        public async Task<ServiceResult> AssignToApplicant(int applicantId, int languageId)
+        {
+            var result = new ServiceResult();
+
+            var assignationData = new ApplicantLanguage
+            {
+                ApplicantId = applicantId,
+                LanguageId = languageId
+            };
+
+            try
+            {
+                await _repository1.AddAsync(assignationData);
+            }
+            catch(Exception ex)
+            {
+                result.AddErrorMessage(ex);
+            }
 
             return result;
         }

@@ -8,10 +8,11 @@ namespace Humanae.Contracts.Services
 {
     public interface IEmployeeService
     {
-        Task<ServiceResult<IEnumerable<EmployeeDto>>> GetAll();
+        Task<ServiceResult<List<EmployeeDto>>> GetAll();
         Task<ServiceResult<EmployeeDto>> GetById(int id);
         Task<ServiceResult> Create(EmployeeParameter parameter);
         Task<ServiceResult> Edit(EmployeeParameter parameter);
         Task<ServiceResult> Delete(DeleteParameter parameter);
+        Task<ServiceResult<IEnumerable<EmployeeDto>>> GetActives();
     }
 }

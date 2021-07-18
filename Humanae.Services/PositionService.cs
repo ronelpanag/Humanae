@@ -33,7 +33,6 @@ namespace Humanae.Services
                     MaxSalary = x.MaxSalary,
                     MinSalary = x.MinSalary,
                     RiskLevel = x.RiskLevel,
-                    DepartmentId = x.DepartmentId,
                     Department = x.Department.Name,
                     IsActive = x.IsActive
                 })
@@ -56,7 +55,6 @@ namespace Humanae.Services
                     MaxSalary = x.MaxSalary,
                     MinSalary = x.MinSalary,
                     RiskLevel = x.RiskLevel,
-                    DepartmentId = x.DepartmentId,
                     Department = x.Department.Name,
                     IsActive = x.IsActive
                 })

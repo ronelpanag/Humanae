@@ -26,6 +26,8 @@ namespace Humanae.Views
 
             if (result.ExcecutedSuccessfully)
             {
+                Context.UserInformation = result.Data;
+
                 Main mainForm = new Main();
                 mainForm.Show();
 

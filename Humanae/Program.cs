@@ -12,7 +12,7 @@ namespace Humanae
 {
     static class Program
     {
-        public static IServiceProvider serviceProvider { get; set; }
+        public static IServiceProvider ServiceProvider { get; set; }
 
         /// <summary>
         ///  The main entry point for the application.
@@ -28,9 +28,9 @@ namespace Humanae
 
             ConfigureServices(services);
 
-            serviceProvider = services.BuildServiceProvider();
+            ServiceProvider = services.BuildServiceProvider();
 
-            Application.Run(serviceProvider.GetRequiredService<Login>());
+            Application.Run(ServiceProvider.GetRequiredService<Login>());
         }
 
         private static void ConfigureServices(ServiceCollection services)
@@ -44,6 +44,10 @@ namespace Humanae
                 .AddScoped<IRepository<User>, Repository<User>>()
                 .AddScoped<IRepository<Position>, Repository<Position>>()
                 .AddScoped<IRepository<Department>, Repository<Department>>()
+                .AddScoped<IRepository<ApplicantExperience>, Repository<ApplicantExperience>>()
+                .AddScoped<IRepository<ApplicantLanguage>, Repository<ApplicantLanguage>>()
+                .AddScoped<IRepository<ApplicantSkill>, Repository<ApplicantSkill>>()
+                .AddScoped<IRepository<ApplicantTraining>, Repository<ApplicantTraining>>()
                 .AddScoped<IRepository<Employee>, Repository<Employee>>();
 
             services.AddScoped<IDepartmentService, DepartmentService>()
@@ -66,7 +70,16 @@ namespace Humanae
                 .AddTransient<PositionListView>()
                 .AddTransient<ApplicantNewView>()
                 .AddTransient<PositionNewView>()
-                .AddTransient<DepartmentNewView>();
+                .AddTransient<DepartmentNewView>()
+                .AddTransient<ApplicantDetailsView>()
+                .AddTransient<ExperienceCreateView>()
+                .AddTransient<LanguageNewView>()
+                .AddTransient<SkillNewView>()
+                .AddTransient<TrainingNewView>()
+                .AddTransient<LanguageListView>()
+                .AddTransient<AssignLanguageView>()
+                .AddTransient<UserNewView>()
+                .AddTransient<NewEmployeeNewView>();
         }
     }
 }

@@ -17,32 +17,70 @@ namespace Humanae.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var child = (Form)Program.serviceProvider
+            if (Context.UserInformation.Role == DomainGlobal.Role.HR)
+            {
+                var child = (Form)Program.ServiceProvider
                 .GetService(typeof(DepartmentListView));
 
-            child.Show();
+                child.Show();
 
-            Hide();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("No posee permisos para acceder a esta funcionalidad.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var child = (Form)Program.serviceProvider
-                .GetService(typeof(PositionListView));
+            if (Context.UserInformation.Role == DomainGlobal.Role.HR)
+            {
+                var child = (Form)Program.ServiceProvider
+                    .GetService(typeof(PositionListView));
 
-            child.Show();
+                child.Show();
 
-            Hide();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("No posee permisos para acceder a esta funcionalidad.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var child = (Form)Program.serviceProvider
-                .GetService(typeof(UserListView));
+            if (Context.UserInformation.Role == DomainGlobal.Role.Admin)
+            {
+                var child = (Form)Program.ServiceProvider
+                    .GetService(typeof(UserListView));
 
-            child.Show();
+                child.Show();
 
-            Hide();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("No posee permisos para acceder a esta funcionalidad.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (Context.UserInformation.Role == DomainGlobal.Role.HR)
+            {
+                var child = (Form)Program.ServiceProvider
+                    .GetService(typeof(LanguageListView));
+
+                child.Show();
+
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("No posee permisos para acceder a esta funcionalidad.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

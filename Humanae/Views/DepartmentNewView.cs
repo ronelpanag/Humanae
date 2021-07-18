@@ -32,7 +32,7 @@ namespace Humanae.Views
 
             if (result.ExcecutedSuccessfully)
             {
-                var child = (Form)Program.serviceProvider
+                var child = (Form)Program.ServiceProvider
                 .GetService(typeof(DepartmentListView));
 
                 child.Show();

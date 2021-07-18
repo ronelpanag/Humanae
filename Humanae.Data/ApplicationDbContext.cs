@@ -12,14 +12,6 @@ namespace Humanae.Data
             optionsBuilder.UseSqlServer(ConnectionString, x => x.MigrationsAssembly("Humanae.Data"));
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ApplicantExperience>().HasNoKey();
-            modelBuilder.Entity<ApplicantSkill>().HasNoKey();
-            modelBuilder.Entity<ApplicantTraining>().HasNoKey();
-            modelBuilder.Entity<ApplicantLanguage>().HasNoKey();
-        }
-
         public DbSet<Position> Positions { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Experience> Experiences { get; set; }

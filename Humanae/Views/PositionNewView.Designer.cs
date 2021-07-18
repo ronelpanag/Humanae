@@ -29,10 +29,8 @@ namespace Humanae.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PositionNewView));
+            this.txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,41 +38,24 @@ namespace Humanae.Views
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtRiskLevel = new System.Windows.Forms.TextBox();
+            this.txtMaxSalary = new System.Windows.Forms.TextBox();
+            this.txtMinSalary = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbDepartment = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(286, 195);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(331, 31);
-            this.textBox1.TabIndex = 0;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(286, 395);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(331, 31);
-            this.textBox2.TabIndex = 1;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(286, 495);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(331, 31);
-            this.textBox3.TabIndex = 2;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(286, 295);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(331, 33);
-            this.comboBox1.TabIndex = 3;
+            this.txtName.Location = new System.Drawing.Point(233, 143);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(456, 31);
+            this.txtName.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(286, 155);
+            this.label1.Location = new System.Drawing.Point(233, 115);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 25);
             this.label1.TabIndex = 4;
@@ -83,7 +64,7 @@ namespace Humanae.Views
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(286, 255);
+            this.label2.Location = new System.Drawing.Point(229, 205);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(135, 25);
             this.label2.TabIndex = 5;
@@ -92,7 +73,7 @@ namespace Humanae.Views
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(286, 355);
+            this.label3.Location = new System.Drawing.Point(233, 394);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(131, 25);
             this.label3.TabIndex = 6;
@@ -101,7 +82,7 @@ namespace Humanae.Views
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(286, 455);
+            this.label4.Location = new System.Drawing.Point(234, 489);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(134, 25);
             this.label4.TabIndex = 7;
@@ -115,6 +96,7 @@ namespace Humanae.Views
             this.button1.TabIndex = 8;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -124,6 +106,7 @@ namespace Humanae.Views
             this.button2.TabIndex = 9;
             this.button2.Text = "Aceptar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label5
             // 
@@ -135,11 +118,53 @@ namespace Humanae.Views
             this.label5.TabIndex = 10;
             this.label5.Text = "Nueva Posición";
             // 
+            // txtRiskLevel
+            // 
+            this.txtRiskLevel.Location = new System.Drawing.Point(233, 233);
+            this.txtRiskLevel.Name = "txtRiskLevel";
+            this.txtRiskLevel.Size = new System.Drawing.Size(456, 31);
+            this.txtRiskLevel.TabIndex = 11;
+            // 
+            // txtMaxSalary
+            // 
+            this.txtMaxSalary.Location = new System.Drawing.Point(233, 517);
+            this.txtMaxSalary.Name = "txtMaxSalary";
+            this.txtMaxSalary.Size = new System.Drawing.Size(456, 31);
+            this.txtMaxSalary.TabIndex = 2;
+            // 
+            // txtMinSalary
+            // 
+            this.txtMinSalary.Location = new System.Drawing.Point(233, 422);
+            this.txtMinSalary.Name = "txtMinSalary";
+            this.txtMinSalary.Size = new System.Drawing.Size(456, 31);
+            this.txtMinSalary.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(233, 296);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(127, 25);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Departamento";
+            // 
+            // cmbDepartment
+            // 
+            this.cmbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDepartment.FormattingEnabled = true;
+            this.cmbDepartment.Location = new System.Drawing.Point(234, 324);
+            this.cmbDepartment.Name = "cmbDepartment";
+            this.cmbDepartment.Size = new System.Drawing.Size(455, 33);
+            this.cmbDepartment.TabIndex = 13;
+            // 
             // PositionNewView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 656);
+            this.Controls.Add(this.cmbDepartment);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtRiskLevel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -147,12 +172,14 @@ namespace Humanae.Views
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMaxSalary);
+            this.Controls.Add(this.txtMinSalary);
+            this.Controls.Add(this.txtName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PositionNewView";
-            this.Text = "PositionNewView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Humanae - Nueva Posición";
+            this.Load += new System.EventHandler(this.PositionNewView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,10 +187,7 @@ namespace Humanae.Views
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -171,5 +195,10 @@ namespace Humanae.Views
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtRiskLevel;
+        private System.Windows.Forms.TextBox txtMaxSalary;
+        private System.Windows.Forms.TextBox txtMinSalary;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbDepartment;
     }
 }

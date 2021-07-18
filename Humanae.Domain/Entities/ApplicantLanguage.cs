@@ -2,6 +2,7 @@
 {
     public class ApplicantLanguage
     {
+        public int Id { get; set; }
         public int ApplicantId { get; set; }
         public Applicant Applicant { get; set; }
         public int LanguageId { get; set; }
