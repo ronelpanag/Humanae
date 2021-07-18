@@ -62,6 +62,12 @@ namespace Humanae.Views
                 MessageBox.Show("Salario Máximo no puede ser menor o igual a 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            if (minSalary > maxSalary)
+            {
+                validationSucceeded = false;
+                MessageBox.Show("Salario Máximo no puede ser menor que el Salario Minimo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             if (validationSucceeded)
             {
                 var result = await _positionService.Create(parameter);

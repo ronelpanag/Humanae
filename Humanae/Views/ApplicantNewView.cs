@@ -4,11 +4,7 @@ using Humanae.Dto;
 using Humanae.Dto.Parameters;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,50 +26,54 @@ namespace Humanae.Views
 
         private async void button2_Click(object sender, EventArgs e)
         {
+            bool isValidForm = ValidationHelper.ValidateIdentification(txtIdentification.Text);
+
             txtIdentification.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
-            if (!ValidationHelper.ValidateIdentification(txtIdentification.Text))
+            if (!isValidForm)
             {
                 MessageBox.Show("Cedula invalida", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            txtIdentification.TextMaskFormat = MaskFormat.IncludeLiterals;
-
-            var selectedItem = cmbAppliedPosition.SelectedItem.ToString();
-            var selectedPosition = Positions
-                .FirstOrDefault(x => x.Name == selectedItem);
-
-            var model = new ApplicantParameter
-            {
-                FirstName = txtFirstName.Text,
-                LastName = txtLastName.Text,
-                Identification = txtIdentification.Text,
-                RecommendedBy = txtRecommendedBy.Text,
-                AppliedPositionId = selectedPosition.Id
-            };
-
-            var result = await _applicantService.Create(model);
-
-            if (result.ExcecutedSuccessfully)
-            {
-                var dialogResult = MessageBox.Show(result.Message,
-                    "Operacion exitosa",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                if (dialogResult == DialogResult.OK)
-                {
-                    Close();
-                }
-
-                var child = (Form)Program.ServiceProvider
-                    .GetService(typeof(ApplicantListView));
-
-                child.Show();
-            }
             else
             {
-                MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtIdentification.TextMaskFormat = MaskFormat.IncludeLiterals;
+
+                var selectedItem = cmbAppliedPosition.SelectedItem.ToString();
+                var selectedPosition = Positions
+                    .FirstOrDefault(x => x.Name == selectedItem);
+
+                var model = new ApplicantParameter
+                {
+                    FirstName = txtFirstName.Text,
+                    LastName = txtLastName.Text,
+                    Identification = txtIdentification.Text,
+                    RecommendedBy = txtRecommendedBy.Text,
+                    AppliedPositionId = selectedPosition.Id
+                };
+
+                var result = await _applicantService.Create(model);
+
+                if (result.ExcecutedSuccessfully)
+                {
+                    var dialogResult = MessageBox.Show(result.Message,
+                        "Operacion exitosa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        Close();
+                    }
+
+                    var child = (Form)Program.ServiceProvider
+                        .GetService(typeof(ApplicantListView));
+
+                    child.Show();
+                }
+                else
+                {
+                    MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
