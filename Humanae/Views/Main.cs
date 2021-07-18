@@ -18,7 +18,8 @@ namespace Humanae.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Context.UserInformation.Role == DomainGlobal.Role.HR)
+            if (Context.UserInformation.Role == DomainGlobal.Role.HR ||
+                Context.UserInformation.Role == DomainGlobal.Role.Admin)
             {
                 var child = (Form)Program.ServiceProvider
                 .GetService(typeof(EmployeeListView));
@@ -33,7 +34,8 @@ namespace Humanae.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (Context.UserInformation.Role == DomainGlobal.Role.HR)
+            if (Context.UserInformation.Role == DomainGlobal.Role.HR ||
+                Context.UserInformation.Role == DomainGlobal.Role.Admin)
             {
                 var child = (Form)Program.ServiceProvider
                 .GetService(typeof(ApplicantListView));

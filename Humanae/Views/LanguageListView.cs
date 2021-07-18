@@ -16,6 +16,7 @@ namespace Humanae.Views
         private ILanguageService _languageService;
         public LanguageListView(ILanguageService languageService)
         {
+            _languageService = languageService;
             InitializeComponent();
         }
 
